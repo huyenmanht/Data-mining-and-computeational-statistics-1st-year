@@ -1,0 +1,110 @@
+# Lab 3 : Logistic Regression
+
+library(ISLR) #loads the ISLR library
+
+# The Stock Market Data
+data(Smarket)
+attach(Smarket)
+names(Smarket)
+dim(Smarket)
+
+?Smarket# detals about the data
+
+#some descriptive statistics
+summary(Smarket)
+
+# produces correlations a matrix  all of the pairwise the data set
+
+pairs(Smarket) #plot of pairwise scatterplots
+pairs(Smarket,col=Direction) #add colour
+
+cor(Smarket) #correlation matrix ... error as it include a non numarical variable (direction) check which
+
+cor(Smarket[,-9],use = "all.obs", method = c("pearson")) #leaving out column 9 of direction variable (not numerical)
+#the only correlation if between year and volumn (0.539)
+plot(Volume) #the correlation coefficient of Volume is increasing over time.(plot volumn vs time)
+
+
+# Logistic Regression
+
+# we predict Direction using Lag1 through Lag5 and Volume.
+
+glm.fit = glm(Direction~Lag1+Lag2+Lag3+Lag4+Lag5+Volume, #fit a glm
+               data=Smarket, #taking data from Smarket
+               family=binomial) #and make it a logistic model
+
+summary(glm.fit)
+
+# output: The smallest p-value here is associated with Lag1, others are not significant, The negative coefficient for this
+#predictor suggests that if the market had a positive return yesterday, then it is less likely to go up today.
+
+
+glm.probs = predict(glm.fit,type="response") #prediction based on the fitted model.
+glm.probs[1:10]
+contrasts(Direction) # Direction is coded as 1 is Up, so glm.probs is Pr(Y=1|X)
+
+
+glm.pred = ifelse(glm.probs>.5,'Up','Down') #creates a vector "glm.pred" of Up/Down predictions
+
+table(glm.pred,Direction)
+
+mean(glm.pred==Direction) # correct predictions(507+145)/ total (1250)
+(507+145) /1250
+
+#...the model correctly predicted the movement of the market by 52.2 % of the time.
+
+100-52.2# 47.8 % is the training error rate.
+
+
+###Using Train and test data to check the accuracy of the logistic regression model
+
+train = Year<2005 #create training vector includes the observations from 2001 to 2004 ="TRUE", 2005="FALSE". 
+
+Smarket.2005 = Smarket[!train,] #yields test data  "the observations of 2005" 
+
+dim(Smarket.2005)
+
+Direction.2005 <- Direction[!train] #test response
+
+
+#fit the logistic regression model on the train data
+glm.fit = glm(Direction~Lag1+Lag2+Lag3+Lag4+Lag5+Volume,
+               data=Smarket,family=binomial,
+               subset=train) # 2001...2004
+summary(glm.fit)
+
+glm.probs <- predict(glm.fit,
+                     Smarket.2005,
+                     type="response") #and then try and predict the test response in data 2005
+
+
+glm.pred <- ifelse(glm.probs>.5,'Up','Down')
+
+table(glm.pred,Direction.2005)
+
+1-mean(glm.pred==Direction.2005) #proportion of correct predictions
+
+mean(glm.pred!=Direction.2005) #test error, worse than random guessing!
+
+
+# refit the logistic regression using just Lag1 and Lag2
+
+glm.fit <- glm(Direction~Lag1+Lag2, data=Smarket, family=binomial, subset=train)# <2005
+summary(glm.fit)
+
+glm.probs <- predict(glm.fit,Smarket.2005,type="response")# 2005
+
+glm.pred <- ifelse(glm.probs>.5,'Up','Down')
+
+table(glm.pred,Direction.2005)
+
+mean(glm.pred==Direction.2005) #proportion of correct predictions
+
+mean(glm.pred!=Direction.2005) #test error
+
+106/(106+76) #what's the accuracy when predicting an increase?
+
+
+#predict for two days with specific levels of Lag1 and Lag2
+
+predict(glm.fit, newdata=data.frame(Lag1=c(1.2,1.5),Lag2=c(1.1,-0.8)), type="response") 
