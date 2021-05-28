@@ -1,0 +1,34 @@
+n <- readline(prompt="Enter n value: ")
+l <- readline(prompt="Enter lamda value: ")
+print(paste("Arithmetic average =", l))
+print(paste("Standard deviation is =", sqrt(25)))
+
+print(paste("My name is", " ", "John Charles", " ", "translated into English"))
+
+set.seed(1)
+
+bruno = rpois(300,0.7)
+hist(bruno)
+
+pois_computation <- function(size, lambda){
+  values= rpois(size, lambda)
+  res_median<-median(values)
+  res_mean<-mean(values)
+  res_sd<-sd(values)
+  return(c(res_median,res_mean, res_sd))
+}
+
+poisson_results <- pois_computation(20000,10)
+poisson_results
+
+hist(rpois(20000, 10))
+
+result <- c(0,0,0,1,0,1,0,1,0,1,0) #0=fail, 1=pass
+mark <- c(14,15,8,21,15,30,13,28,12,26,2)
+
+#************
+set.seed(100)
+rpois(12, 0.7)
+#*************
+
+plot(mark, result)
