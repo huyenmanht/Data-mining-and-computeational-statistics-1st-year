@@ -1,0 +1,925 @@
+#to set up wd
+setwd("/Users/manhhuyen/Downloads")
+
+#to store the data in imdb.250
+imdb.250 <- read.csv("imdb-top-250.csv", header=T,sep=",")
+
+#to store data the variables
+attach(imdb.250)
+
+names(imdb_top_250)
+
+
+#transform chr in factor
+class(imdb_top_250$genre)
+imdb_top_250$genre <- as.factor(imdb_top_250$genre)
+class(imdb_top_250$genre)
+
+class(imdb_top_250$score)
+imdb_top_250$score <- as.factor(imdb_top_250$score)
+class(imdb_top_250$score)
+
+
+#finding group the movies according to kind of genre
+
+s <-split(imdb_top_250,imdb_top_250$genre)
+
+# showing score of movies for group the movies according to kind of genre
+
+s[["Action"]][["score"]]
+s[["Adventure"]][["score"]]
+s[["Animation"]][["score"]]
+s[["Biography"]][["score"]]
+s[["Comedy"]][["score"]]
+s[["Crime"]][["score"]]
+s[["Drama"]][["score"]]
+s[["Film-Noir"]][["score"]]
+s[["Horror"]][["score"]]
+s[["Mystery"]][["score"]]
+s[["Sci-Fi"]][["score"]]
+s[["War"]][["score"]]
+s[["Western"]][["score"]]
+
+#finding the mean of score for group the movies according to kind of genre
+
+mean(as.numeric(as.character(s[["Action"]][["score"]])))
+mean(as.numeric(as.character(s[["Adventure"]][["score"]])))
+mean(as.numeric(as.character(s[["Animation"]][["score"]])))
+mean(as.numeric(as.character(s[["Biography"]][["score"]])))
+mean(as.numeric(as.character(s[["Comedy"]][["score"]])))
+mean(as.numeric(as.character(s[["Crime"]][["score"]])))
+mean(as.numeric(as.character(s[["Drama"]][["score"]])))
+mean(as.numeric(as.character(s[["Film-Noir"]][["score"]])))
+mean(as.numeric(as.character(s[["Horror"]][["score"]])))
+mean(as.numeric(as.character(s[["Mystery"]][["score"]])))
+mean(as.numeric(as.character(s[["Sci-Fi"]][["score"]])))
+mean(as.numeric(as.character(s[["War"]][["score"]])))
+mean(as.numeric(as.character(s[["Western"]][["score"]])))
+
+#finding the median of score for group the movies according to kind of genre
+
+median(as.numeric(as.character(s[["Action"]][["score"]])))
+median(as.numeric(as.character(s[["Adventure"]][["score"]])))
+median(as.numeric(as.character(s[["Animation"]][["score"]])))
+median(as.numeric(as.character(s[["Biography"]][["score"]])))
+median(as.numeric(as.character(s[["Comedy"]][["score"]])))
+median(as.numeric(as.character(s[["Crime"]][["score"]])))
+median(as.numeric(as.character(s[["Drama"]][["score"]])))
+median(as.numeric(as.character(s[["Film-Noir"]][["score"]])))
+median(as.numeric(as.character(s[["Horror"]][["score"]])))
+median(as.numeric(as.character(s[["Mystery"]][["score"]])))
+median(as.numeric(as.character(s[["Sci-Fi"]][["score"]])))
+median(as.numeric(as.character(s[["War"]][["score"]])))
+median(as.numeric(as.character(s[["Western"]][["score"]])))
+
+#finding the mode of score for group the movies according to kind of genre
+
+length(s[["Action"]][["score"]])
+sum(as.numeric(as.character(s[["Action"]][["score"]])))/length(s[["Action"]][["score"]])
+
+length(s[["Adventure"]][["score"]])
+sum(as.numeric(as.character(s[["Adventure"]][["score"]])))/length(s[["Adventure"]][["score"]])
+
+length(s[["Animation"]][["score"]])
+sum(as.numeric(as.character(s[["Animation"]][["score"]])))/length(s[["Animation"]][["score"]])
+
+length(s[["Biography"]][["score"]])
+sum(as.numeric(as.character(s[["Biography"]][["score"]])))/length(s[["Biography"]][["score"]])
+
+length(s[["Comedy"]][["score"]])
+sum(as.numeric(as.character(s[["Comedy"]][["score"]])))/length(s[["Comedy"]][["score"]])
+
+length(s[["Crime"]][["score"]])
+sum(as.numeric(as.character(s[["Crime"]][["score"]])))/length(s[["Crime"]][["score"]])
+
+length(s[["Drama"]][["score"]])
+sum(as.numeric(as.character(s[["Drama"]][["score"]])))/length(s[["Drama"]][["score"]])
+
+length(s[["Film-Noir"]][["score"]])
+sum(as.numeric(as.character(s[["Film-Noir"]][["score"]])))/length(s[["Film-Noir"]][["score"]])
+
+length(s[["Horror"]][["score"]])
+sum(as.numeric(as.character(s[["Horror"]][["score"]])))/length(s[["Horror"]][["score"]])
+
+length(s[["Mystery"]][["score"]])
+sum(as.numeric(as.character(s[["Mystery"]][["score"]])))/length(s[["Mystery"]][["score"]])
+
+length(s[["Sci-Fi"]][["score"]])
+sum(as.numeric(as.character(s[["Sci-Fi"]][["score"]])))/length(s[["Sci-Fi"]][["score"]])
+
+length(s[["War"]][["score"]])
+sum(as.numeric(as.character(s[["War"]][["score"]])))/length(s[["War"]][["score"]])
+
+length(s[["Western"]][["score"]])
+sum(as.numeric(as.character(s[["Western"]][["score"]])))/length(s[["Western"]][["score"]])
+
+
+
+#finding the variance and standart deviation of score for group the movies according to kind of genre
+
+var(as.numeric(as.character(s[["Action"]][["score"]])))
+sd(as.numeric(as.character(s[["Action"]][["score"]])))
+
+var(as.numeric(as.character(s[["Adventure"]][["score"]])))
+sd(as.numeric(as.character(s[["Adventure"]][["score"]])))
+
+var(as.numeric(as.character(s[["Animation"]][["score"]])))
+sd(as.numeric(as.character(s[["Animation"]][["score"]])))
+
+var(as.numeric(as.character(s[["Biography"]][["score"]])))
+sd(as.numeric(as.character(s[["Biography"]][["score"]])))
+
+var(as.numeric(as.character(s[["Comedy"]][["score"]])))
+sd(as.numeric(as.character(s[["Comedy"]][["score"]])))
+
+var(as.numeric(as.character(s[["Crime"]][["score"]])))
+sd(as.numeric(as.character(s[["Crime"]][["score"]])))
+
+var(as.numeric(as.character(s[["Drama"]][["score"]])))
+sd(as.numeric(as.character(s[["Drama"]][["score"]])))
+
+var(as.numeric(as.character(s[["Film-Noir"]][["score"]])))
+sd(as.numeric(as.character(s[["Film-Noir"]][["score"]])))
+
+var(as.numeric(as.character(s[["Horror"]][["score"]])))
+sd(as.numeric(as.character(s[["Horror"]][["score"]])))
+
+var(as.numeric(as.character(s[["Mystery"]][["score"]])))
+sd(as.numeric(as.character(s[["Mystery"]][["score"]])))
+
+var(as.numeric(as.character(s[["Sci-Fi"]][["score"]])))
+sd(as.numeric(as.character(s[["Sci-Fi"]][["score"]])))
+
+var(as.numeric(as.character(s[["War"]][["score"]])))
+sd(as.numeric(as.character(s[["War"]][["score"]])))
+
+var(as.numeric(as.character(s[["Western"]][["score"]])))
+sd(as.numeric(as.character(s[["Western"]][["score"]])))
+
+
+#finding the minimum and maximum of score for group the movies according to kind of genre
+
+min(as.numeric(as.character(s[["Action"]][["score"]])))
+max(as.numeric(as.character(s[["Action"]][["score"]])))
+
+min(as.numeric(as.character(s[["Adventure"]][["score"]])))
+max(as.numeric(as.character(s[["Adventure"]][["score"]])))
+
+min(as.numeric(as.character(s[["Animation"]][["score"]])))
+max(as.numeric(as.character(s[["Animation"]][["score"]])))
+
+min(as.numeric(as.character(s[["Biography"]][["score"]])))
+max(as.numeric(as.character(s[["Biography"]][["score"]])))
+
+min(as.numeric(as.character(s[["Comedy"]][["score"]])))
+max(as.numeric(as.character(s[["Comedy"]][["score"]])))
+
+min(as.numeric(as.character(s[["Crime"]][["score"]])))
+max(as.numeric(as.character(s[["Crime"]][["score"]])))
+
+min(as.numeric(as.character(s[["Drama"]][["score"]])))
+max(as.numeric(as.character(s[["Drama"]][["score"]])))
+
+min(as.numeric(as.character(s[["Film-Noir"]][["score"]])))
+max(as.numeric(as.character(s[["Film-Noir"]][["score"]])))
+
+min(as.numeric(as.character(s[["Horror"]][["score"]])))
+max(as.numeric(as.character(s[["Horror"]][["score"]])))
+
+min(as.numeric(as.character(s[["Mystery"]][["score"]])))
+max(as.numeric(as.character(s[["Mystery"]][["score"]])))
+
+min(as.numeric(as.character(s[["Sci-Fi"]][["score"]])))
+max(as.numeric(as.character(s[["Sci-Fi"]][["score"]])))
+
+min(as.numeric(as.character(s[["War"]][["score"]])))
+max(as.numeric(as.character(s[["War"]][["score"]])))
+
+min(as.numeric(as.character(s[["Western"]][["score"]])))
+max(as.numeric(as.character(s[["Western"]][["score"]])))
+
+#finding the summary of score for group the movies according to kind of genre
+
+summary(as.numeric(as.character(s[["Action"]][["score"]])))
+summary(as.numeric(as.character(s[["Adventure"]][["score"]])))
+summary(as.numeric(as.character(s[["Animation"]][["score"]])))
+summary(as.numeric(as.character(s[["Biography"]][["score"]])))
+summary(as.numeric(as.character(s[["Comedy"]][["score"]])))
+summary(as.numeric(as.character(s[["Crime"]][["score"]])))
+summary(as.numeric(as.character(s[["Drama"]][["score"]])))
+summary(as.numeric(as.character(s[["Film-Noir"]][["score"]])))
+summary(as.numeric(as.character(s[["Horror"]][["score"]])))
+summary(as.numeric(as.character(s[["Mystery"]][["score"]])))
+summary(as.numeric(as.character(s[["Sci-Fi"]][["score"]])))
+summary(as.numeric(as.character(s[["War"]][["score"]])))
+summary(as.numeric(as.character(s[["Western"]][["score"]])))
+
+
+#plotting score for group the movies according to kind of genre
+hist(as.numeric(as.character(s[["Action"]][["score"]])),main = "Histogram of score for type of Genre",xlab="Action",col= "blue")
+hist(as.numeric(as.character(s[["Adventure"]][["score"]])),main = "Histogram of score for type of Genre",xlab="Adventure",col= "red")
+hist(as.numeric(as.character(s[["Animation"]][["score"]])),main = "Histogram of score for type of Genre",xlab="Animation",col= "blue")
+hist(as.numeric(as.character(s[["Biography"]][["score"]])),main = "Histogram of score for type of Genre",xlab="Biography",col= "red")
+hist(as.numeric(as.character(s[["Comedy"]][["score"]])),main = "Histogram of score for type of Genre",xlab="Comedy",col= "blue")
+hist(as.numeric(as.character(s[["Crime"]][["score"]])),main = "Histogram of score for type of Genre",xlab="Crime",col= "red")
+hist(as.numeric(as.character(s[["Drama"]][["score"]])),main = "Histogram of score for type of Genre",xlab="Drama",col= "blue")
+hist(as.numeric(as.character(s[["Film-Noir"]][["score"]])),main = "Histogram of score for type of Genre",xlab="Film-Noir",col= "red")
+hist(as.numeric(as.character(s[["Horror"]][["score"]])),main = "Histogram of score for type of Genre",xlab="Horror",col= "blue")
+hist(as.numeric(as.character(s[["Mystery"]][["score"]])),main = "Histogram of score for type of Genre",xlab="Mystery",col= "red")
+hist(as.numeric(as.character(s[["Sci-Fi"]][["score"]])),main = "Histogram of score for type of Genre",xlab="Sci-Fi",col= "blue")
+hist(as.numeric(as.character(s[["War"]][["score"]])),main = "Histogram of score for type of Genre",xlab="War",col= "red")
+hist(as.numeric(as.character(s[["Western"]][["score"]])),main = "Histogram of score for type of Genre",xlab="Western",col= "blue")
+
+#plotting barplot
+
+table(genre)
+count <- table(genre)
+count
+table(genre)/250
+barplot(count,main = "Genre",col = "blue")
+
+
+Score of rating
+#transform chr in factor
+
+class(imdb_top_250$rating)
+imdb_top_250$rating <- as.factor(imdb_top_250$rating)
+class(imdb_top_250$rating)
+
+class(imdb_top_250$score)
+imdb_top_250$score <- as.factor(imdb_top_250$score)
+class(imdb_top_250$score)
+
+#finding group the movies according to kind of rating
+
+s1 <-split(imdb_top_250,imdb_top_250$rating)
+
+# showing score of movies for group the movies according to kind of rating
+
+s1[["(Banned)"]][["score"]]
+s1[["12A"]][["score"]]
+s1[["A"]][["score"]]
+s1[["AA"]][["score"]]
+s1[["G"]][["score"]]
+s1[["PG"]][["score"]]
+s1[["PG-13"]][["score"]]
+s1[["R"]][["score"]]
+s1[["U"]][["score"]]
+s1[["UA"]][["score"]]
+s1[["X"]][["score"]]
+
+#finding the mean of score for group the movies according to kind of rating
+
+mean(as.numeric(as.character(s1[["(Banned)"]][["score"]])))
+mean(as.numeric(as.character(s1[["12A"]][["score"]])))
+mean(as.numeric(as.character(s1[["A"]][["score"]])))
+mean(as.numeric(as.character(s1[["AA"]][["score"]])))
+mean(as.numeric(as.character(s1[["G"]][["score"]])))
+mean(as.numeric(as.character(s1[["PG"]][["score"]])))
+mean(as.numeric(as.character(s1[["PG-13"]][["score"]])))
+mean(as.numeric(as.character(s1[["R"]][["score"]])))
+mean(as.numeric(as.character(s1[["U"]][["score"]])))
+mean(as.numeric(as.character(s1[["UA"]][["score"]])))
+mean(as.numeric(as.character(s1[["X"]][["score"]])))
+
+#finding the median of score for group the movies according to kind of rating
+
+median(as.numeric(as.character(s1[["(Banned)"]][["score"]])))
+median(as.numeric(as.character(s1[["12A"]][["score"]])))
+median(as.numeric(as.character(s1[["A"]][["score"]])))
+median(as.numeric(as.character(s1[["AA"]][["score"]])))
+median(as.numeric(as.character(s1[["G"]][["score"]])))
+median(as.numeric(as.character(s1[["PG"]][["score"]])))
+median(as.numeric(as.character(s1[["PG-13"]][["score"]])))
+median(as.numeric(as.character(s1[["R"]][["score"]])))
+median(as.numeric(as.character(s1[["U"]][["score"]])))
+median(as.numeric(as.character(s1[["UA"]][["score"]])))
+median(as.numeric(as.character(s1[["X"]][["score"]])))
+
+#finding the mode of score for group the movies according to kind of rating
+
+length(s1[["(Banned)"]][["score"]])
+sum(as.numeric(as.character(s1[["(Banned)"]][["score"]])))/length(s1[["(Banned)"]][["score"]])
+
+length(s1[["12A"]][["score"]])
+sum(as.numeric(as.character(s1[["12A"]][["score"]])))/length(s1[["12A"]][["score"]])
+
+length(s1[["A"]][["score"]])
+sum(as.numeric(as.character(s1[["A"]][["score"]])))/length(s1[["A"]][["score"]])
+
+length(s1[["AA"]][["score"]])
+sum(as.numeric(as.character(s1[["AA"]][["score"]])))/length(s1[["AA"]][["score"]])
+
+length(s1[["G"]][["score"]])
+sum(as.numeric(as.character(s1[["G"]][["score"]])))/length(s1[["G"]][["score"]])
+
+length(s1[["PG"]][["score"]])
+sum(as.numeric(as.character(s1[["PG"]][["score"]])))/length(s1[["PG"]][["score"]])
+
+length(s1[["PG-13"]][["score"]])
+sum(as.numeric(as.character(s1[["PG-13"]][["score"]])))/length(s1[["PG-13"]][["score"]])
+
+length(s1[["R"]][["score"]])
+sum(as.numeric(as.character(s1[["R"]][["score"]])))/length(s1[["R"]][["score"]])
+
+length(s1[["U"]][["score"]])
+sum(as.numeric(as.character(s1[["U"]][["score"]])))/length(s1[["U"]][["score"]])
+
+length(s1[["UA"]][["score"]])
+sum(as.numeric(as.character(s1[["UA"]][["score"]])))/length(s1[["UA"]][["score"]])
+
+length(s1[["X"]][["score"]])
+sum(as.numeric(as.character(s1[["X"]][["score"]])))/length(s1[["X"]][["score"]])
+
+#finding the variance and standart deviation of score for group the movies according to kind of rating
+
+var(as.numeric(as.character(s1[["(Banned)"]][["score"]])))
+sd(as.numeric(as.character(s1[["(Banned)"]][["score"]])))
+
+var(as.numeric(as.character(s1[["12A"]][["score"]])))
+sd(as.numeric(as.character(s1[["12A"]][["score"]])))
+
+var(as.numeric(as.character(s1[["A"]][["score"]])))
+sd(as.numeric(as.character(s1[["A"]][["score"]])))
+
+var(as.numeric(as.character(s1[["AA"]][["score"]])))
+sd(as.numeric(as.character(s1[["AA"]][["score"]])))
+
+var(as.numeric(as.character(s1[["G"]][["score"]])))
+sd(as.numeric(as.character(s1[["G"]][["score"]])))
+
+var(as.numeric(as.character(s1[["PG"]][["score"]])))
+sd(as.numeric(as.character(s1[["PG"]][["score"]])))
+
+var(as.numeric(as.character(s1[["PG-13"]][["score"]])))
+sd(as.numeric(as.character(s1[["PG-13"]][["score"]])))
+
+var(as.numeric(as.character(s1[["R"]][["score"]])))
+sd(as.numeric(as.character(s1[["R"]][["score"]])))
+
+var(as.numeric(as.character(s1[["U"]][["score"]])))
+sd(as.numeric(as.character(s1[["U"]][["score"]])))
+
+var(as.numeric(as.character(s1[["UA"]][["score"]])))
+sd(as.numeric(as.character(s1[["UA"]][["score"]])))
+
+var(as.numeric(as.character(s1[["X"]][["score"]])))
+sd(as.numeric(as.character(s1[["X"]][["score"]])))
+
+#finding the minimum and maximum of score for group the movies according to kind of rating
+
+min(as.numeric(as.character(s1[["(Banned)"]][["score"]])))
+max(as.numeric(as.character(s1[["(Banned)"]][["score"]])))
+
+min(as.numeric(as.character(s1[["12A"]][["score"]])))
+max(as.numeric(as.character(s1[["12A"]][["score"]])))
+
+min(as.numeric(as.character(s1[["A"]][["score"]])))
+max(as.numeric(as.character(s1[["A"]][["score"]])))
+
+
+min(as.numeric(as.character(s1[["AA"]][["score"]])))
+max(as.numeric(as.character(s1[["AA"]][["score"]])))
+
+
+min(as.numeric(as.character(s1[["G"]][["score"]])))
+max(as.numeric(as.character(s1[["G"]][["score"]])))
+
+
+min(as.numeric(as.character(s1[["PG"]][["score"]])))
+max(as.numeric(as.character(s1[["PG"]][["score"]])))
+
+
+min(as.numeric(as.character(s1[["PG-13"]][["score"]])))
+max(as.numeric(as.character(s1[["PG-13"]][["score"]])))
+
+
+min(as.numeric(as.character(s1[["R"]][["score"]])))
+max(as.numeric(as.character(s1[["R"]][["score"]])))
+
+
+min(as.numeric(as.character(s1[["U"]][["score"]])))
+max(as.numeric(as.character(s1[["U"]][["score"]])))
+
+
+min(as.numeric(as.character(s1[["UA"]][["score"]])))
+max(as.numeric(as.character(s1[["UA"]][["score"]])))
+
+
+min(as.numeric(as.character(s1[["X"]][["score"]])))
+max(as.numeric(as.character(s1[["X"]][["score"]])))
+
+#finding the summary of score for group the movies according to kind of rating
+
+summary(as.numeric(as.character(s1[["(Banned)"]][["score"]])))
+summary(as.numeric(as.character(s1[["12A"]][["score"]])))
+summary(as.numeric(as.character(s1[["A"]][["score"]])))
+summary(as.numeric(as.character(s1[["AA"]][["score"]])))
+summary(as.numeric(as.character(s1[["G"]][["score"]])))
+summary(as.numeric(as.character(s1[["PG"]][["score"]])))
+summary(as.numeric(as.character(s1[["PG-13"]][["score"]])))
+summary(as.numeric(as.character(s1[["R"]][["score"]])))
+summary(as.numeric(as.character(s1[["U"]][["score"]])))
+summary(as.numeric(as.character(s1[["UA"]][["score"]])))
+summary(as.numeric(as.character(s1[["X"]][["score"]])))
+
+#plotting score for group the movies according to kind of rating
+
+hist(as.numeric(as.character(s1[["(Banned)"]][["score"]])),main = "Histogram of score for type of Rating",xlab="(Banned)",col= "blue")
+hist(as.numeric(as.character(s1[["12A"]][["score"]])),main = "Histogram of score for type of Rating",xlab="12A",col= "red")
+hist(as.numeric(as.character(s1[["A"]][["score"]])),main = "Histogram of score for type of Rating",xlab="A",col= "blue")
+hist(as.numeric(as.character(s1[["AA"]][["score"]])),main = "Histogram of score for type of Rating",xlab="AA",col= "red")
+hist(as.numeric(as.character(s1[["G"]][["score"]])),main = "Histogram of score for type of Rating",xlab="G",col= "blue")
+hist(as.numeric(as.character(s1[["PG"]][["score"]])),main = "Histogram of score for type of Rating",xlab="PG",col= "red")
+hist(as.numeric(as.character(s1[["PG-13"]][["score"]])),main = "Histogram of score for type of Rating",xlab="PG-13",col= "blue")
+hist(as.numeric(as.character(s1[["R"]][["score"]])),main = "Histogram of score for type of Rating",xlab="R",col= "red")
+hist(as.numeric(as.character(s1[["U"]][["score"]])),main = "Histogram of score for type of Rating",xlab="U",col= "blue")
+hist(as.numeric(as.character(s1[["UA"]][["score"]])),main = "Histogram of score for type of Rating",xlab="UA",col= "red")
+hist(as.numeric(as.character(s1[["X"]][["score"]])),main = "Histogram of score for type of Rating",xlab="X",col= "blue")
+
+#plotting barplot-rating
+
+table(rating)
+count <- table(rating)
+count
+table(rating)/250
+barplot(count,main = "Rating",col = "blue")
+
+
+
+#plotting barplot-starring
+
+table(starring)
+count <- table(starring)
+count
+table(starring)/250
+barplot(count,main = "Actors",col = "blue")
+
+#plotting barplot-director
+
+table(director)
+count <- table(director)
+count
+table(director)/250
+barplot(count,main = "Directors",col = "blue")
+
+Score of years
+library(readr)
+imdb_top_250 <- read_csv("imdb-top-250.csv")
+View(imdb_top_250)
+attach(imdb_top_250)
+names(imdb_top_250)
+
+library(readr)
+year.1=year<1950
+year.3=year>1989
+year.2=year>1949&year<1990
+
+before.1950<-ifelse(year.1,1,0)
+between.1950.and.1989<-ifelse(year.2,1,0)
+after.1990<-ifelse(year.3,1,0)
+
+#transform chr in factor
+
+imdb_top_250$year<-as.numeric(imdb_top_250$year)
+
+
+#finding group the movies according to period of year
+dataforscore <-data.frame(before.1950,between.1950.and.1989,after.1990,score)
+View(dataforscore)
+
+#finding the mean of score for group the movies according to period of year
+
+tapply(dataforscore$score, dataforscore$before.1950, mean)
+tapply(dataforscore$score, dataforscore$between.1950.and.1989, mean)
+tapply(dataforscore$score, dataforscore$after.1990, mean)
+
+#finding the median of score for group the movies according to period of year
+
+tapply(dataforscore$score, dataforscore$before.1950, median)
+tapply(dataforscore$score, dataforscore$between.1950.and.1989, median)
+tapply(dataforscore$score, dataforscore$after.1990, median)
+
+#finding the  variance standard deviation of score for group the movies according to period of year
+
+tapply(dataforscore$score, dataforscore$before.1950, var)
+tapply(dataforscore$score, dataforscore$before.1950, sd)
+
+tapply(dataforscore$score, dataforscore$between.1950.and.1989, var)
+tapply(dataforscore$score, dataforscore$between.1950.and.1989, sd)
+
+tapply(dataforscore$score, dataforscore$after.1990, var)
+tapply(dataforscore$score, dataforscore$after.1990, sd)
+
+#plotting of year
+
+table(before.1950,between.1950.and.1989,after.1990)
+counts <- table(before.1950,between.1950.and.1989,after.1990)
+counts
+percent <- table(before.1950,between.1950.and.1989,after.1990)
+percent
+table(before.1950,between.1950.and.1989,after.1990)/250
+hist(percent,main = "Score for Year",xlab="Periods of the Year",freq=F,col = "blue")
+
+
+
+
+#creating dummies for year
+ 
+imdb_top_250$year<-as.numeric(imdb_top_250$year)
+year.1=year<1950
+year.3=year>1989
+year.2=year>1949&year<1990
+ 
+ 
+library(readr)
+before.1950<-as.factor(ifelse(year.1,1,0))
+between.1950.and.1989<-as.factor(ifelse(year.2,1,0))
+after.1990<-as.factor(ifelse(year.3,1,0))
+s1<-data.frame(before.1950,between.1950.and.1989,after.1990)
+ 
+#create dummies for genre and rating
+#genre
+ 
+library(mlr)
+s2<-createDummyFeatures(imdb_top_250$genre,cols="genre")
+ attach(s2)
+Action<-as.factor(Action)
+Adventure<-as.factor(Adventure)
+Animation<-as.factor(Animation)
+Biography<-as.factor(Biography)
+Comedy<-as.factor(Comedy)
+Crime<-as.factor(Crime)
+Drama<-as.factor(Drama)
+Film.Noir<-as.factor(s2$`Film-Noir`)
+ 
+Horror<-as.factor(Horror)
+Mystery<-as.factor(Mystery)
+Sci.Fi<-as.factor(s2$`Sci-Fi`)
+War<-as.factor(War)
+Western<-as.factor(Western)
+ 
+s2.1<-data.frame(Action,Adventure,Animation,Biography,Comedy,Crime,Drama,Film.Noir,Horror,Mystery,Sci.Fi,War,Western)
+ 
+#rating
+s3<-createDummyFeatures(imdb_top_250$rating,cols="rating")
+attach(s3)
+Banned.<-as.factor(s3$`(Banned)`)
+X12A<-as.factor(s3$`12A`)
+A<-as.factor(A)
+AA<-as.factor(AA)
+G<-as.factor(G)
+PG<-as.factor(PG)
+PG.13<-as.factor(s3$`PG-13`)
+R<-as.factor(R)
+U<-as.factor(U)
+UA<-as.factor(UA)
+X<-as.factor(X)
+s3.1<-data.frame(Banned.,X12A,A,AA,G,PG,PG.13,R,U,UA,X)
+#create dummies for director
+s4<- (createDummyFeatures(imdb_top_250$director,cols="director"))
+Stanley.Kubrick <- as.factor(s4$`Stanley Kubrick`)     	
+Steven.Spielberg <- as.factor(s4$`Steven Spielberg`)  	
+Christopher.Nolan <- as.factor(s4$`Christopher Nolan`)
+Martin.Scorsese <- as.factor(s4$`Martin Scorsese`) 	
+Akira.Kurosawa <- as.factor(s4$`Akira Kurosawa`) 	
+Hayao.Miyazaki <- as.factor(s4$`Hayao Miyazaki`)	
+Alfred.Hitchcock <- as.factor(s4$`Alfred Hitchcock`)  
+Quentin.Tarantino <- as.factor(s4$`Quentin Tarantino`) 	
+Billy.Wilder <- as.factor(s4$`Billy Wilder`) 	
+Charles.Chaplin  <- as.factor(s4$`Charles Chaplin`)  
+Sergio.Leone  <- as.factor(s4$`Sergio Leone`)   
+Ingmar.Bergman <- as.factor(s4$`Ingmar Bergman`) 	
+Clint.Eastwood <- as.factor(s4$`Clint Eastwood`)  
+James.Cameron <- as.factor(s4$`James Cameron`)	
+David.Fincher <- as.factor(s4$`David Fincher`)  
+Pete.Docter <- as.factor(s4$`Pete Docter`)  
+Ridley.Scott <- as.factor(s4$`Ridley Scott`)  
+Denis.Villeneuve  <- as.factor(s4$`Denis Villeneuve`) 
+Peter.Jackson <- as.factor(s4$`Peter Jackson`) 
+Frank.Capra  <- as.factor(s4$`Frank Capra`)
+s4. <- data.frame(Stanley.Kubrick ,Steven.Spielberg ,Christopher.Nolan ,Martin.Scorsese,Akira.Kurosawa,Hayao.Miyazaki,Alfred.Hitchcock,Quentin.Tarantino,Billy.Wilder,Charles.Chaplin,Sergio.Leone,Ingmar.Bergman,Clint.Eastwood,James.Cameron,David.Fincher,Pete.Docter,Ridley.Scott,Denis.Villeneuve,Peter.Jackson,Frank.Capra)
+ 
+#create dummies for actors(starring)
+most.frequent.actors= c("Robert De Niro","Harrison Ford","Leonardo DiCaprio","Tom Hanks","Clint Eastwood","Aamir Khan","Morgan Freeman","Tom Hardy","James Stewart","Al Pacino","Christian Bale","Charles Chaplin","Mark Hamill","Joe Pesci","Sean Astin","Brad Pitt","Gunnar","Marlon Brando","Ralph Fiennes","Matt Damon","Paul Newman","Mifune","Michael Caine","Ethan Hawke","Takashi Shimura","Bruce Willis","Steve Buscemi","Jack Hawkins","Carrie Fisher","William Holden")
+most.frequent.actors<-as.list(most.frequent.actors)
+text1 <- imdb_top_250$starring
+ 
+dummy.actor.text<-data.frame(sapply(most.frequent.actors,grepl,text1))
+library(readr)
+Robert.De.Niro<-as.factor(ifelse(dummy.actor.text$X1,1,0))
+Harrison.Ford<-as.factor(ifelse(dummy.actor.text$X2,1,0))
+Leonardo.DiCaprio<-as.factor(ifelse(dummy.actor.text$X3,1,0))
+Tom.Hanks<-as.factor(ifelse(dummy.actor.text$X4,1,0))
+Clint.Eastwood<-as.factor(ifelse(dummy.actor.text$X5,1,0))
+Aamir.Khan.<-as.factor(ifelse(dummy.actor.text$X6,1,0))
+Morgan.Freeman<-as.factor(ifelse(dummy.actor.text$X7,1,0))
+Tom.Hardy<-as.factor(ifelse(dummy.actor.text$X8,1,0))
+James.Stewart<-as.factor(ifelse(dummy.actor.text$X9,1,0))
+Al.Pacino<-as.factor(ifelse(dummy.actor.text$X10,1,0))
+Christian.Bale<-as.factor(ifelse(dummy.actor.text$X11,1,0))
+Charles.Chaplin<-as.factor(ifelse(dummy.actor.text$X12,1,0))
+Mark.Hamill<-as.factor(ifelse(dummy.actor.text$X13,1,0))
+Joe.Pesci<-as.factor(ifelse(dummy.actor.text$X14,1,0))
+Sean.Astin<-as.factor(ifelse(dummy.actor.text$X15,1,0))
+Brad.Pitt<-as.factor(ifelse(dummy.actor.text$X16,1,0))
+Gunnar<-as.factor(ifelse(dummy.actor.text$X17,1,0))
+Marlon.Brando<-as.factor(ifelse(dummy.actor.text$X18,1,0))
+Ralph.Fiennes<-as.factor(ifelse(dummy.actor.text$X19,1,0))
+Matt.Damon<-as.factor(ifelse(dummy.actor.text$X20,1,0))
+Paul.Newman<-as.factor(ifelse(dummy.actor.text$X21,1,0))
+Mifune<-as.factor(ifelse(dummy.actor.text$X22,1,0))
+Michael.Caine<-as.factor(ifelse(dummy.actor.text$X23,1,0))
+Ethan.Hawke<-as.factor(ifelse(dummy.actor.text$X24,1,0))
+Takashi.Shimura<-as.factor(ifelse(dummy.actor.text$X25,1,0))
+Bruce.Willis<-as.factor(ifelse(dummy.actor.text$X26,1,0))
+Steve.Buscemi<-as.factor(ifelse(dummy.actor.text$X27,1,0))
+Jack.Hawkins<-as.factor(ifelse(dummy.actor.text$X28,1,0))
+Carrie.Fisher<-as.factor(ifelse(dummy.actor.text$X29,1,0))
+William.Holden<-as.factor(ifelse(dummy.actor.text$X30,1,0))
+s5<-data.frame(Robert.De.Niro,Harrison.Ford,Leonardo.DiCaprio,Tom.Hanks,Clint.Eastwood,Aamir.Khan.,Morgan.Freeman,Tom.Hardy,James.Stewart,Al.Pacino,Christian.Bale,Charles.Chaplin,Mark.Hamill,Joe.Pesci,Sean.Astin,Brad.Pitt,Gunnar,Marlon.Brando,Ralph.Fiennes,Matt.Damon,Paul.Newman,Mifune,Michael.Caine,Ethan.Hawke,Takashi.Shimura,Bruce.Willis,Steve.Buscemi,Jack.Hawkins,Carrie.Fisher,William.Holden)
+ 
+#create dummy variables for duration
+duration.dummy<- read_csv("duration-dummy.csv")
+attach(duration.dummy)
+ 
+less.than.2h<-as.factor(less.than.2h)
+between.2h.to.3h<-as.factor(between.2h.to.3h)
+more.than.3h<-as.factor(more.than.3h)
+s6<-data.frame(less.than.2h,between.2h.to.3h,more.than.3h)
+#dummy variables for key words in summaryplot
+movie_words= c("father","police","say","family","men","wife","war","car","child","son","home","woman","old","love","money","young","friend","mother","room","boy","city","live","run","night","film","house","school","girl","train","fight","show","people","world","murder","story","brother","town","german","escape","fall","head","force","officer","gang","apartment","death","shoot","start","drive","plan","play","hand","soldier","walk","follow","talk","watch","dead","door","truck","fire","daughter","face","order","dog","believe","another","open","hotel","stop","gun","army","die","learn","ring","attack","parent","use","thing","break","attempt","never","job","move","body","together","send","appear","husband","refuse","become","movie","steal","group","decide","camp","long","local","bruce","white")
+#movie_words= c("father","police","say","family","men","wife","war","car","child","son","home","woman","old","love","money","young","friend","mother","room","boy","city","live","run","night","film","house","school","girl","train","fight","show","people","world","murder","story","brother","town","german","escape","fall","head","force","officer","gang","apartment","death","shoot","start","drive","plan ")
+movie_words<-as.list(movie_words)
+text <- imdb_top_250$summarytext
+ 
+dummy.summary.text<-data.frame(sapply(movie_words,grepl,text))
+library(readr)
+father<-as.factor(ifelse(dummy.summary.text$X1,1,0))
+police<-as.factor(ifelse(dummy.summary.text$X2,1,0))
+say<-as.factor(ifelse(dummy.summary.text$X3,1,0))
+family<-as.factor(ifelse(dummy.summary.text$X4,1,0))
+men<-as.factor(ifelse(dummy.summary.text$X5,1,0))
+wife<-as.factor(ifelse(dummy.summary.text$X6,1,0))
+war<-as.factor(ifelse(dummy.summary.text$X7,1,0))
+car<-as.factor(ifelse(dummy.summary.text$X8,1,0))
+child<-as.factor(ifelse(dummy.summary.text$X9,1,0))
+son<-as.factor(ifelse(dummy.summary.text$X10,1,0))
+home<-as.factor(ifelse(dummy.summary.text$X11,1,0))
+woman<-as.factor(ifelse(dummy.summary.text$X12,1,0))
+old<-as.factor(ifelse(dummy.summary.text$X13,1,0))
+love <-as.factor(ifelse(dummy.summary.text$X14,1,0)) 	
+money<-as.factor(ifelse(dummy.summary.text$X15,1,0))   	
+young <-as.factor(ifelse(dummy.summary.text$X16,1,0))          
+friend <-as.factor(ifelse(dummy.summary.text$X17,1,0))   	
+mother <-as.factor(ifelse(dummy.summary.text$X18,1,0)) 
+room  <-as.factor(ifelse(dummy.summary.text$X19,1,0))         	
+boy <-as.factor(ifelse(dummy.summary.text$X20,1,0))   	        
+city <-as.factor(ifelse(dummy.summary.text$X21,1,0))          	
+live<-as.factor(ifelse(dummy.summary.text$X22,1,0))           	
+run <-as.factor(ifelse(dummy.summary.text$X23,1,0))           	
+night<-as.factor(ifelse(dummy.summary.text$X24,1,0))          	
+film <-as.factor(ifelse(dummy.summary.text$X25,1,0))          	
+house <-as.factor(ifelse(dummy.summary.text$X26,1,0))         	
+school <-as.factor(ifelse(dummy.summary.text$X27,1,0))        	
+girl <-as.factor(ifelse(dummy.summary.text$X28,1,0))          	
+train <-as.factor(ifelse(dummy.summary.text$X29,1,0))         	
+fight <-as.factor(ifelse(dummy.summary.text$X30,1,0))         	
+show  <-as.factor(ifelse(dummy.summary.text$X31,1,0))         	
+people <-as.factor(ifelse(dummy.summary.text$X32,1,0))        	
+world <-as.factor(ifelse(dummy.summary.text$X33,1,0))         	
+murder <-as.factor(ifelse(dummy.summary.text$X34,1,0))        	
+story <-as.factor(ifelse(dummy.summary.text$X35,1,0))     	    
+brother<-as.factor(ifelse(dummy.summary.text$X36,1,0))        	
+town <-as.factor(ifelse(dummy.summary.text$X37,1,0))          	
+german <-as.factor(ifelse(dummy.summary.text$X38,1,0))        	
+escape <-as.factor(ifelse(dummy.summary.text$X39,1,0))        	
+fall<-as.factor(ifelse(dummy.summary.text$X40,1,0))           	
+head <-as.factor(ifelse(dummy.summary.text$X41,1,0))          	
+force <-as.factor(ifelse(dummy.summary.text$X42,1,0))         	
+officer <-as.factor(ifelse(dummy.summary.text$X43,1,0))       	
+gang <-as.factor(ifelse(dummy.summary.text$X44,1,0))          	
+apartment<-as.factor(ifelse(dummy.summary.text$X45,1,0))      	
+death <-as.factor(ifelse(dummy.summary.text$X46,1,0))         	
+shoot <-as.factor(ifelse(dummy.summary.text$X47,1,0))         	
+start <-as.factor(ifelse(dummy.summary.text$X48,1,0))         	
+drive <-as.factor(ifelse(dummy.summary.text$X49,1,0))         	
+plan<-as.factor(ifelse(dummy.summary.text$X50,1,0))     	
+play<-as.factor(ifelse(dummy.summary.text$X51,1,0))           	
+hand <-as.factor(ifelse(dummy.summary.text$X52,1,0))          	
+soldier <-as.factor(ifelse(dummy.summary.text$X53,1,0))       	
+walk <-as.factor(ifelse(dummy.summary.text$X54,1,0))	          
+follow <-as.factor(ifelse(dummy.summary.text$X55,1,0))        	
+talk  <-as.factor(ifelse(dummy.summary.text$X56,1,0))         	
+watch <-as.factor(ifelse(dummy.summary.text$X57,1,0))         	
+dead <-as.factor(ifelse(dummy.summary.text$X58,1,0))          	
+door <-as.factor(ifelse(dummy.summary.text$X59,1,0))          	
+truck  <-as.factor(ifelse(dummy.summary.text$X60,1,0))        	
+fire <-as.factor(ifelse(dummy.summary.text$X61,1,0))           	
+daughter<-as.factor(ifelse(dummy.summary.text$X62,1,0))        	
+face  <-as.factor(ifelse(dummy.summary.text$X63,1,0))         	
+order  <-as.factor(ifelse(dummy.summary.text$X64,1,0))         	
+dog <-as.factor(ifelse(dummy.summary.text$X65,1,0))            	
+believe <-as.factor(ifelse(dummy.summary.text$X66,1,0))        	
+anoth<-as.factor(ifelse(dummy.summary.text$X67,1,0))          	
+open  <-as.factor(ifelse(dummy.summary.text$X68,1,0))         	
+hotel  <-as.factor(ifelse(dummy.summary.text$X69,1,0))             
+stop <-as.factor(ifelse(dummy.summary.text$X70,1,0))           	
+gun <-as.factor(ifelse(dummy.summary.text$X71,1,0))             	
+army <-as.factor(ifelse(dummy.summary.text$X72,1,0))            	
+die  <-as.factor(ifelse(dummy.summary.text$X73,1,0))            	
+learn <-as.factor(ifelse(dummy.summary.text$X74,1,0))           	
+ring <-as.factor(ifelse(dummy.summary.text$X75,1,0))           	
+attack<-as.factor(ifelse(dummy.summary.text$X76,1,0))           	
+parent <-as.factor(ifelse(dummy.summary.text$X77,1,0))          	
+use <-as.factor(ifelse(dummy.summary.text$X78,1,0))             	
+thing <-as.factor(ifelse(dummy.summary.text$X79,1,0) )          	
+break. <-as.factor(ifelse(dummy.summary.text$X80,1,0))               
+attempt   <-as.factor(ifelse(dummy.summary.text$X81,1,0))     	
+never <-as.factor(ifelse(dummy.summary.text$X82,1,0))         	
+job  <-as.factor(ifelse(dummy.summary.text$X83,1,0))          	
+move <-as.factor(ifelse(dummy.summary.text$X84,1,0))         	
+body  <-as.factor(ifelse(dummy.summary.text$X85,1,0))        	
+together  <-as.factor(ifelse(dummy.summary.text$X86,1,0))     	
+send  <-as.factor(ifelse(dummy.summary.text$X87,1,0))         	
+appear <-as.factor(ifelse(dummy.summary.text$X88,1,0))        	
+husband <-as.factor(ifelse(dummy.summary.text$X89,1,0))       	
+refuse <-as.factor(ifelse(dummy.summary.text$X90,1,0))       	
+become <-as.factor(ifelse(dummy.summary.text$X91,1,0))         	
+movie <-as.factor(ifelse(dummy.summary.text$X92,1,0))          	
+steal <-as.factor(ifelse(dummy.summary.text$X93,1,0))          	
+group <-as.factor(ifelse(dummy.summary.text$X94,1,0))          	
+decide<-as.factor(ifelse(dummy.summary.text$X95,1,0))             
+camp <-as.factor(ifelse(dummy.summary.text$X96,1,0))           	
+long  <-as.factor(ifelse(dummy.summary.text$X97,1,0))          	
+local <-as.factor(ifelse(dummy.summary.text$X98,1,0))          	
+bruce <-as.factor(ifelse(dummy.summary.text$X99,1,0))          	
+white <-as.factor(ifelse(dummy.summary.text$X100,1,0))        	
+dummyof100words<-data.frame(father,police,say,family,men,wife,war,car,child,son,home,woman,old,love,money,young,friend,mother,room,boy,city,live,run,night,film,house,school,girl,train,fight,show,people,world,murder,story,brother,town,german,escape,fall,head,force,officer,gang,apartment,death,shoot,start,drive,plan,play,hand,soldier,walk,follow,talk,watch,dead,door,truck,fire,daughter,face,order,dog,believe,anoth,open,hotel,stop,gun,army,die,learn,ring,attack,parent,use,thing,break.,attempt,never,job,move,body,together,send,appear,husband,refuse,become,movie,steal,group,decide,camp,long,local,bruce,white)
+#dummyof100words<-data.frame(father,police,say,family,men,wife,war,car,child,son,home,woman,old,love,money,young,friend,mother,room,boy,city,live,run,night,film,house,school,girl,train,fight,show,people,world,murder,story,brother,town,german,escape,fall,head,force,officer,gang,apartment,death,shoot,start,drive,plan)
+
+#For MCA:
+dataformca<-data.frame(s1,s2.1,s3.1,s6,s4.,s5,dummyof100words)
+attach(dataformca)
+
+library(FactoMineR)
+mca1<-MCA(dataformca,ncp=50,ind.sup = NULL,quanti.sup=NULL,excl = NULL,graph = TRUE,level.ventil = 0,axes = c(3,4),method = "Indicator")
+mca1$eig
+install.packages("factoextra")
+library(factoextra)
+new <- get_mca_ind(mca1)
+newcontrib<-data.frame(new$contrib)
+attach(newcontrib)
+
+
+
+
+#explaining why we choose to keep the first 50 dimensions for clustering
+Mca1[["eig"]]
+
+
+
+
+
+We will try performing K-means at k =7, k=10, k=13
+
+codes:
+
+#clustering
+#K-means
+#check for missing values
+#install.packages("VIM")
+library(VIM)
+aggr(newcontrib)
+
+#the elbow method to choose the optimal number of K
+#contruct a function to compute the total w/i clusters ss
+kmeans.withinss<-function(k){
+  cluster<-kmeans(newcontrib,k)
+  return(cluster$tot.withinss)
+}
+#set maximum cluster
+max_k<-20
+#run algorithm over a range of k
+wss<-sapply(2:max_k,kmeans.withinss)
+#create a dataframe to plot the graph
+elbow<-data.frame(2:max_k,wss)
+#plot k vs wss
+#install.packages("ggplot2")
+library(ggplot2)
+ggplot(elbow,aes(x=X2.max_k,y=wss))+geom_point()+geom_line()+ scale_x_continuous(breaks=seq(1,20,by=1))
+
+#try k-means again with k=7
+kmeans7<-kmeans(newcontrib,7)
+#to see the cluster that each observation belongs to
+kmeans7$cluster
+#to see the cluster centres
+cluster.centres<-data.frame(kmeans7$centers)
+#to see the totla sum of squares
+kmeans7$totss
+#to see within cluster sum of squares
+kmeans7$withinss
+#to see sum of within
+kmeans7$tot.withinss
+#to see between cluster sum of squares
+kmeans7$betweenss
+#to see number of observation inside each cluster
+kmeans7$size
+
+#try k-means again with k=10
+kmeans10<-kmeans(newcontrib,10)
+#to see the cluster that each observation belongs to
+kmeans10$cluster
+#to see the cluster centres
+cluster.centres<-data.frame(kmeans10$centers)
+#to see the totla sum of squares
+kmeans10$totss
+#to see within cluster sum of squares
+kmeans10$withinss
+#to see sum of within
+kmeans10$tot.withinss
+#to see between cluster sum of squares
+kmeans10$betweenss
+#to see number of observation inside each cluster
+kmeans10$size
+
+
+#try k-means again with k=13
+kmeans13<-kmeans(newcontrib,13)
+#to see the cluster that each observation belongs to
+kmeans13$cluster
+#to see the cluster centres
+cluster.centres<-data.frame(kmeans13$centers)
+#to see the totla sum of squares
+kmeans13$totss
+#to see within cluster sum of squares
+kmeans13$withinss
+#to see sum of within
+kmeans13$tot.withinss
+#to see between cluster sum of squares
+kmeans13$betweenss
+#to see number of observation inside each cluster
+kmeans13$size
+
+#Comparison of output
+#k=7
+kmeans7$totss
+
+kmeans7$withinss
+
+kmeans7$tot.withinss
+
+kmeans7$betweenss
+
+kmeans7$size
+
+
+#k=10
+kmeans10$totss
+
+kmeans10$withinss
+ 
+ kmeans10$tot.withinss
+
+kmeans10$betweenss
+
+kmeans10$size
+ 
+#k=13
+kmeans13$totss
+
+kmeans13$withinss
+
+kmeans13$tot.withinss
+
+kmeans13$betweenss
+
+ kmeans13$size
+ 
+ center<-kmeans10$centers
+
+kmeans10.cluster<-data.frame(kmeans10[["cluster"]])
+
+
+
+
+#combine all newly created dummies in the new dataframe for PCA
+
+dataforpca<-data.frame(imdb_top_250$rank,imdb_top_250$title,s4.,s5.,imdb_top_250$score,s3,duration.dummy,s2,dummyof100words)
+score<-as.numeric((score))
+
+library(factoextra)
+library(dbscan)
+data.frame(newcontrib)
+
+set.seed(1) 
+dbscan::kNNdistplot(newcontrib,k=5)
+abline(h=2,lty=2)
+f<-fpc::dbscan(newcontrib,eps=2,MinPts =5)
+f
+dbscan=dbscan(newcontrib,2,5)
+dbscan
+dbscan$cluster
+
+hullplot(newcontrib,dbscan$cluster)
+fviz_cluster(f,newcontrib,frame = FALSE,geom="point")
