@@ -1,0 +1,160 @@
+
+library("ISLR")
+data(Weekly)
+#Weekly percentage returns for the S&P 500 stock index between 1990 and 2010.
+attach(Weekly)
+names(Weekly)
+#a: 
+dim(Weekly)
+summary(Weekly)
+cor(Weekly[,-9])
+
+pairs(Weekly)
+pairs(Weekly,col=Direction)
+
+par(mfrow=c(3,3))
+plot(Lag1)
+plot(Lag2)
+plot(Lag3)
+plot(Lag4)
+plot(Lag5)
+plot(Volume)
+plot(Today)
+
+par(mfrow=c(1,1))
+plot(Weekly$Year, Weekly$Volume)
+
+#b:
+glm.fit = glm(Direction~Lag1+Lag2+Lag3+Lag4+Lag5+Volume,family =
+                "binomial", data=Weekly)
+summary(glm.fit)
+#c:
+#devide the dataset into training data and test data: 
+training <- (Year < 2009) #train data
+Weekly.2009to2010 <- Weekly[!training, ] #test data 
+Direction.2009to2010 <- Direction[!training] #test response
+#logistic regression
+glm.fit.1 <- glm(Direction ~ Lag2, data = Weekly, family = binomial(link="logit"), subset = training)
+summary(glm.fit.1)
+
+glm.probs <- predict(glm.fit.1, Weekly.2009to2010, type = "response") 
+glm.pred <- ifelse(glm.probs>.5,'Up','Down')
+
+table(glm.pred, Direction.2009to2010)
+mean(glm.pred == Direction.2009to2010)
+
+#LDA
+library(MASS)
+#estimate one train data
+lda.fit <- lda(Direction ~ Lag2, data = Weekly, subset = training)  
+lda.fit
+#predict on test data
+lda.pred <- predict(lda.fit, Weekly.2009to2010) 
+lda.class=lda.pred$class
+lda.tab=table(lda.pred$class, Direction.2009to2010)
+lda.tab
+
+mean(lda.class==Direction.2009to2010) 
+
+#QDA
+qda.fit<- qda(Direction ~ Lag2, data = Weekly, subset = training) 
+qda.fit
+
+qda.pred <- predict(qda.fit, Weekly.2009to2010) 
+qda.class <-qda.pred$class
+qda.tab <- table(qda.class, Direction.2009to2010)
+qda.tab
+1-mean(qda.class != Direction.2009to2010)
+
+#KNN
+library(class)
+
+train.KNN = as.matrix(Weekly[training, ]$Lag2)
+test.KNN = as.matrix(Weekly[!training, ]$Lag2)
+
+Direction.2009to2010=Direction[!training]
+
+set.seed(1)
+KNN.pred = knn(train.KNN, test.KNN, Direction[train], k = 1) 
+table(KNN.pred, Direction.2009to2010)
+
+mean(KNN.pred == Direction.2009to2010)
+
+#exercise 2:
+library(ISLR)
+data(College)
+names(College)
+attach(College)
+summary(College)
+
+#a
+
+
+set.seed(1)
+trainingset= sample(1:nrow(College), size = round(0.7*nrow(College)), replace=FALSE) 
+train = College[trainingset ,]
+test = College[-trainingset ,]
+
+#b
+lm.fit <- lm(Apps~., data=train)
+lm.pred <- predict(lm.fit, newdata=test)
+mean((lm.pred - test$Apps)^2)
+#or
+lin_model_fit <- lm(Apps~., data=College[trainingset,])
+lin_model_pred <- predict(lin_model_fit, newdata=College[-trainingset,])
+mean((lin_model_pred - College[-trainingset,'Apps'])^2)
+
+#c
+
+library(glmnet)
+x.train=model.matrix (Apps~.,train)[,-1] 
+x.test=model.matrix (Apps~.,test)[,-1]
+y.train=train$Apps
+y.test=test$Apps
+set.seed(1)
+cv.out=cv.glmnet(x.train,y.train,alpha =0)
+bestlam=cv.out$lambda.min
+ridge.mod =glmnet(x.train,y.train,alpha=0,lambda=bestlam)
+ridge.mod
+ridge.mod$beta
+ridge.pred=predict(ridge.mod,s=bestlam ,newx=x.test)
+mean((ridge.pred-y.test)^2)
+
+#d
+set.seed(1)
+cv.out.d=cv.glmnet (x.train,y.train,alpha =1)
+bestlam.d=cv.out.d$lambda.min
+bestlam.d
+
+lasso.mod=glmnet(x.train,y.train,alpha=1,lambda=bestlam.d)
+lasso.mod
+lasso.mod$beta
+
+lasso.pred=predict(lasso.mod,s=bestlam.d ,newx=x.test)
+mean((lasso.pred-y.test)^2)
+
+lasso.coef=predict(lasso.mod,type="coefficients",s=bestlam.d)[1:length(lasso.mod$beta),]
+non.zero.coef=lasso.coef[lasso.coef!=0]
+dim(non.zero.coef)
+non.zero.coef
+
+#e
+library(pls)
+set.seed(1)
+PCR.fit = pcr(Apps~.,data=train,validation='CV')
+PCR.fit
+summary(PCR.fit)
+validationplot(PCR.fit,val.type="MSEP")
+PCR.pred = predict(PCR.fit, newdata=test, ncomp=16)
+mean((PCR.pred - test$Apps)^2)
+
+#f
+set.seed(1)
+pls.fit = plsr(Apps~., data=train, validation='CV')
+pls.fit
+
+validationplot(pls.fit,val.type="MSEP")
+summary(pls.fit)
+pls.pred = predict(pls.fit, newdata=test, ncomp=15)
+mean((pls.pred - test$Apps)^2)
+
